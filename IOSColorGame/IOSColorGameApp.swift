@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct IOSColorGameApp: App {
+    
+    @StateObject private var gameModel = GameModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(gameModel)
         }
     }
 }

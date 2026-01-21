@@ -8,17 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var game: GameModel
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+     
+        ZStack{
+            Color.blue.edgesIgnoringSafeArea(.all)
+            Circle()
+                .fill(Color.red)
+                .frame(width: 50, height: 50)
+                .position(game.position)
+                .onTapGesture {
+                    game.score += 1
+                    game.position = CGPoint(x: CGFloat.random(in: 50...350), y: CGFloat.random(in: 50...700))
+                }
+            VStack {
+                Text("Score: \(game.score)")
+                    .font(.largeTitle)
+                    .padding()
+                
+                Spacer()
+            }
+
         }
-        .padding()
+        
+        
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView().environmentObject(GameModel())
 }

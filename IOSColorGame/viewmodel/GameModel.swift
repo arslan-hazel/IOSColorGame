@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
+ import Combine
+
+class GameModel: ObservableObject{
+    @Published var score: Int = 0
+    @Published var position = CGPoint(x: 100, y: 100)
+}
